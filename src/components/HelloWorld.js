@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 
-class HelloWorld extends Component {
-  render() {
-    return <h1>Hello, World!</h1>
-  }
+const StartGrabBag = () => {
+  const getInput = document.getElementById('stringList')
+  const userInput = document.getElementById('input').value
+  const createElement = document.createElement('li')
+  createElement.appendChild(document.createTextNode(userInput))
+  getInput.appendChild(createElement)
+  document.querySelector('.search').addEventListener('click', StartGrabBag)
 }
 
-export default HelloWorld
+export default StartGrabBag
