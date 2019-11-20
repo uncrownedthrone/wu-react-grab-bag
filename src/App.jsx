@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import HelloWorld from './components/HelloWorld'
-import { randomFillSync } from 'crypto'
 
 const App = () => {
   const [bag, setBag] = useState([])
   const [itemToAdd, setItemToAdd] = useState('')
+  const [randomIndex, setRandomIndex] = useState()
 
   const addNewItemToArray = () => {
     // this will take the current value of itemsToAdd
@@ -18,6 +18,7 @@ const App = () => {
 
   const selectItemAtRandom = () => {
     const random = Math.ceil(Math.random() * bag.length)
+    setRandomIndex(random)
   }
 
   return (
@@ -35,17 +36,13 @@ const App = () => {
       </section>
       <ul>
         {bag.map((item, index) => {
-          // this does the same thing.......
-          // if (randomIndex === index) {
-          //   return <li className='highlighted'>{item}</li>
-          // } else {
-          //   return <li>{item}</li>
-          // }
-          // as this........
-          return randomIndex === index ? (
-            <li className='highlighted'>{item}</li>
-          ) : (
-            <li>{item}</li>
+          return (
+            <li
+              key={index}
+              className={randomIndex === index ? 'highlighted' : ''}
+            >
+              {item}
+            </li>
           )
         })}
       </ul>
